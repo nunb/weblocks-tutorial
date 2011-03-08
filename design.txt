@@ -30,3 +30,31 @@ Also, in this case we've changed what init-session does, so to see changes we'd 
 So remember and use these two commands:
  (weblocks:reset-sessions)
  (weblocks:start-weblocks)
+
+
+Well, now we actually have data to render, or rather, we'd render it if we had it.
+
+Stop and start lisp using our standard start-tut.lisp, and at the repl (at the command prompt) go to the tut package:
+
+(in-package 'tut)
+(start-tut)
+
+Ensure weblocks is running! That will open the tut store automatically.
+
+Alternate instructions:
+(weblocks:start-weblocks)
+and start tut using a browser.
+
+Go to the browser to ensure it's running. Then at the repl:
+
+? (make-instance 'question :title "This is the first question")
+#<QUESTION #x30004373FEBD>
+? (o-save *)
+#<QUESTION #x30004373FEBD>
+? 
+
+* indicates "last thing printed at the repl"
+
+Now refresh your browser. Voila!
+
+Add a few more Qs the same way. (Since we're using rlwrap remember to use the up arrow key to save typing!).
