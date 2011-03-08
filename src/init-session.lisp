@@ -4,8 +4,26 @@
 (defwidget firstpage ()
  ((num :initform 10)))
 
+;; 3 utility fns for cl-persistence
+
+(defun all-of (type)
+  "Accepts an argument symbol, finds stored objects of that type"
+  (declare (ignore arg))
+  (find-persistent-objects (class-store type) type :order-by (cons 'name :asc)))
+
+(defun o-save (object)
+  (persist-object *default-store* object))
+
+(defun o-delete (object)
+  "Delete an object from the store. Performs check first."
+  (when object
+    (awhen (object-id object)
+      (delete-persistent-object *default-store* object))))
+
 (defmethod render-widget-body ((obj firstpage) &rest args)
-    (with-html (:p "first page")))
+    (with-html (:p "first page")
+               (dolist (q (all-of 'question))
+                 (with-html (:p (str (slot-value q 'title)))))))
 
 ;; Define callback function to initialize new sessions
 (defun init-user-session (root)
