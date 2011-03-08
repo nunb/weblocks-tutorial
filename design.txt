@@ -1,5 +1,3 @@
-
-
 Design:
 
 We shall build a voting system. Start minimal. A title (phrased as a question) and upvotes + downvotes. How do we ensure people vote only once?
@@ -8,6 +6,8 @@ We will attempt to ensure fair voting by using a long-running session per user (
 Structures/classes:
 
 votable with upvotes + downvotes
+This goes into models.lisp -- we like defclass* so add it to the asd file, and re-evaluate (ql:quickload "tut") at the repl.
+
 question inherits from votable with a title
 
 Pages:

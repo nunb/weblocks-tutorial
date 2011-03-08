@@ -11,12 +11,13 @@
     :author ""
     :licence ""
     :description "tut"
-    :depends-on (:weblocks)
+    :depends-on (:weblocks :hu.dwim.defclass-star)
     :components ((:file "tut")
 		 (:module conf
 		  :components ((:file "stores"))
 		  :depends-on ("tut"))
 		 (:module src
-		  :components ((:file "init-session"))
+		  :components ((:file "init-session")
+                               (:file "models"))
 		  :depends-on ("tut" conf))))
 

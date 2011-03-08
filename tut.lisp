@@ -1,10 +1,11 @@
 
 (defpackage #:tut
   (:use :cl :weblocks
-        :f-underscore :anaphora)
+        :f-underscore :anaphora :hu.dwim.defclass-star)
   (:import-from :hunchentoot #:header-in
 		#:set-cookie #:set-cookie* #:cookie-in
 		#:user-agent #:referer)
+  (:import-from  :hu.dwim.defclass-star #:defclass*)
   (:documentation
    "A web application based on Weblocks."))
 
