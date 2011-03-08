@@ -1,9 +1,14 @@
 Weblocks Tutorial (weblocks + ccl + osx + quicklisp)
 
-1. Download quicklisp, run it with ccl and laod weblocks.
+1. Download quicklisp, run it with ccl and load weblocks. (this part is simple enough to just do a short screencast).
 2. run weblocks:
    ? (weblocks::start-weblocks)
    #<WEBLOCKS-ACCEPTOR (host *, port 8080)>
-
-3. ???
+3. ??? What do people want? Let them tell you. Build a voting system.
 4. PROFIT!!!
+
+
+
+
+
+  
