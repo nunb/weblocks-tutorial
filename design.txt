@@ -21,15 +21,12 @@ DONE
 
 firstpage.lisp
 
-(defwidget firstpage ()
-  (num :initform 30))
+DONE
 
-(r-w-b firstpage
-  (render-list (all-of 'votable-question :sort-by :upvotes)))
+Remember, when you restart weblocks/lisp for any reason (I just did it to move my development into a tmux session) you must restart weblocks.
 
-(render-list (list)
-  (dolist (l list)
-    (with-html (:p (format nil l)))))
+Also, in this case we've changed what init-session does, so to see changes we'd have to reset-sessions.
 
-
-  
+So remember and use these two commands:
+ (weblocks:reset-sessions)
+ (weblocks:start-weblocks)
