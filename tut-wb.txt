@@ -1,11 +1,33 @@
 Weblocks Tutorial (weblocks + ccl + osx + quicklisp)
 
 1. Download quicklisp, run it with ccl and load weblocks. (this part is simple enough to just do a short screencast).
+    Briefly:
+    cd; mkdir cl; cd cl; 
+    wget http://beta.quicklisp.org/quicklisp.lisp
+   wget beta.quicklisp.org/quicklisp.lisp;
+   rlwrap ccl --load quicklisp.lisp 
+   
+If this is your first time, QL will prompt you to run (quicklisp-quickstart:install) -- do that. Now  Quicklisp tells us what to do:
+
+   1.    To load a system, use: (ql:quickload "system-name")
+
+   2. To find systems, use: (ql:system-apropos "term")
+
+   3. To load Quicklisp every time you start Lisp, use: (ql:add-to-init-file)
+
+   First do step #3. I also did this step: (ql:quickload "quicklisp-slime-helper")
+
+  Then do step #1 (ql:quickload "weblocks") 
+
+  Enjoy the painless download and install.
+
+   
 2. run weblocks:
    ? (weblocks::start-weblocks)
    #<WEBLOCKS-ACCEPTOR (host *, port 8080)>
 3. ??? What do people want? Let them tell you. Build a voting system.
-4. PROFIT!!!
+4. PROFIT!!!!!!
+
 
 
 Design:
