@@ -17,13 +17,7 @@ The landing page should show all outstanding questions before the weblocks commu
 
 So our files:
 
-models.lisp
-(defclass* votable ()
-  (upvotes :initform 0)
-  (downvotes :initform 0))
-
-(defclass* question (votable)
-  (title :initform ""))
+DONE
 
 firstpage.lisp
 
