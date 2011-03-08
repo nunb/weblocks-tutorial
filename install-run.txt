@@ -1,4 +1,4 @@
-Weblocks Tutorial (weblocks + ccl + osx + quicklisp)
+Weblocks installation + app creation.
 
 1. Download quicklisp, run it with ccl and load weblocks. (this part is simple enough to just do a short screencast).
     Briefly:
