@@ -65,3 +65,18 @@ To load "tut":
 
 Now weblocks is running on 8080, navigate to http://localhost:8080 and you can start your tut app. So far of course, it does nothing. Let's remedy that next.
 
+One final thing.. if you like to use slime, and I highly recommend you do, run the following commands (this assumes you've used quicklisp-slime-helper above) :
+ (ql:quickload "swank")
+ (swank:create-server :port 5005 :style :spawn :dont-close t)
+
+For best results put all the commands into a file, say start-tut.lisp
+
+(push #P"/Users/Nandan/programming/cl/tut/" asdf:*central-registry*) 
+(ql:quickload "tut")
+ (ql:quickload "swank")
+ (swank:create-server :port 5005 :style :spawn :dont-close t)
+
+Then each time you want to work on the project you can run
+
+rlwrap ccl --load start-tut.lisp  (or put it inside a .screenrc according to the tutorial here [http://redlinernotes.com/blog/?p=1232]
+
