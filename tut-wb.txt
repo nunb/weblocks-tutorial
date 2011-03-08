@@ -3,13 +3,13 @@ Weblocks Tutorial (weblocks + ccl + osx + quicklisp)
 1. Download quicklisp, run it with ccl and load weblocks. (this part is simple enough to just do a short screencast).
     Briefly:
     cd; mkdir cl; cd cl; 
+    cd /tmp/
     wget http://beta.quicklisp.org/quicklisp.lisp
-   wget beta.quicklisp.org/quicklisp.lisp;
-   rlwrap ccl --load quicklisp.lisp 
+    rlwrap ccl --load quicklisp.lisp 
    
 If this is your first time, QL will prompt you to run (quicklisp-quickstart:install) -- do that. Now  Quicklisp tells us what to do:
 
-   1.    To load a system, use: (ql:quickload "system-name")
+   1. To load a system, use: (ql:quickload "system-name")
 
    2. To find systems, use: (ql:system-apropos "term")
 
@@ -25,47 +25,43 @@ If this is your first time, QL will prompt you to run (quicklisp-quickstart:inst
 2. run weblocks:
    ? (weblocks::start-weblocks)
    #<WEBLOCKS-ACCEPTOR (host *, port 8080)>
-3. ??? What do people want? Let them tell you. Build a voting system.
+   Go to port 8080 - weblocks is running.
+
 4. At repl run (wop:make-app 'tut "/Users/nandan/programming/cl/tut") 
+    You should get a message similar to the following:
+    TUT has been created.
+    Please add '/Users/Nandan/programming/cl/tut/' to asdf:*central-registry* before you proceed.
+
+5. you can accomplish the latter by evaluating (push #P"/Users/Nandan/programming/cl/tut/" asdf:*central-registry*)
+
+Let's quit lisp and start over. In sbcl use C-d until back at the shell, in ccl type (quit).
+
+Load up again, and load your new project:
+
+ ~/programming/cl  $ rlwrap ccl --load "/Users/Nandan/quicklisp/setup.lisp" 
+Welcome to Clozure Common Lisp Version 1.4-r13119  (DarwinX8664)!
+? (push #P"/Users/Nandan/programming/cl/tut/" asdf:*central-registry*)
+(#P"/Users/Nandan/programming/cl/tut/" #P"/Users/Nandan/quicklisp/quicklisp/" #P"/Users/Nandan/quicklisp/quicklisp/" (DIRECTORY-NAMESTRING *DEFAULT-PATHNAME-DEFAULTS*))
+?  (ql:quickload "tut")
+... loading messages from quicklisp
 
 
+Well, in the first step above the --load isn't necessary if you've added quicklisp to your lisp's init file with (ql:add-to-init-file)
 
-Design:
+Starting over, this is how simple it should be to get your website/webapp up and running:
 
-We shall build a voting system. Start minimal. A title (phrased as a question) and upvotes + downvotes. How do we ensure people vote only once?
-We will attempt to ensure fair voting by using a long-running session per user (which in turn will set  a cookie). Since this is a simple project we'll just default to cl-prevalence, which is extremely simple to get started with.
+ ~/programming/cl  $ rlwrap ccl
+Welcome to Clozure Common Lisp Version 1.4-r13119  (DarwinX8664)!
+? (push #P"/Users/Nandan/programming/cl/tut/" asdf:*central-registry*)
+(#P"/Users/Nandan/programming/cl/tut/" #P"/Users/Nandan/quicklisp/quicklisp/" (DIRECTORY-NAMESTRING *DEFAULT-PATHNAME-DEFAULTS*))
+?  (ql:quickload "tut")
+To load "tut":
+  Load 1 ASDF system:
+    tut
+; Loading "tut"
+.......
+("tut")
+? (weblocks:start-weblocks)
 
-Structures/classes:
+Now weblocks is running on 8080, navigate to http://localhost:8080 and you can start your tut app. So far of course, it does nothing. Let's remedy that next.
 
-votable with upvotes + downvotes
-question inherits from votable with a title
-
-Pages:
-
-The landing page should show all outstanding questions before the weblocks community, their upvotes + downvotes. There should be a button to add a question. Perhaps later we can have threaded comments, tickets etc.
-
-
-So our files:
-
-models.lisp
-(defclass* votable ()
-  (upvotes :initform 0)
-  (downvotes :initform 0))
-
-(defclass* question (votable)
-  (title :initform ""))
-
-firstpage.lisp
-
-(defwidget firstpage ()
-  (num :initform 30))
-
-(r-w-b firstpage
-  (render-list (all-of 'votable-question :sort-by :upvotes)))
-
-(render-list (list)
-  (dolist (l list)
-    (with-html (:p (format nil l)))))
-
-
-  
