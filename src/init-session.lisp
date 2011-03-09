@@ -34,6 +34,6 @@
 (defun init-user-session (root)
   (setf (widget-children root)
 	(list
-         (f_% (render-link (f_% (send-script "alert('me');"))
-                          "Add new question"))
+         (make-widget (f_% (render-link (f_% (send-script "alert('me');"))
+                           "Add new question")))
          (make-instance 'firstpage))))

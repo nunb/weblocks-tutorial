@@ -65,3 +65,8 @@ Okay, now we need an interface to actually add questions thru the browser.
 
 That means forms+views, all that good stuff. We can also do this an alternate way, by hand-coding the forms..
 
+The earlier demo prints some errors at the repl. In later versions of weblocks, functions that are used in lieu of widgets are best wrapped in make-widget forms, and the repl errors go away.
+
+Now we move on to actually displaying a form (next commit).
+
+Remember to do (ql:quickload "tut")  followed by (weblocks:reset-sessions) and a browser refresh to see changes!
