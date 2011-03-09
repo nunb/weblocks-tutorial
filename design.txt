@@ -76,3 +76,5 @@ Okay, now we have a dialog in screen. It isn't ideal. Notice what happens when y
 Experiment with using do-page instead of do-dialog. (reset-sessions) will come in handy!
 
 Now we add a on-cancel directive. The fn specified by on-cancel is given a widget and calling answer with any widget returns from the continuation started by do-dialog. But the cancel button is inconvenient and only appears in form-view in the pop up dialog...
+
+Show only the fields we need to.

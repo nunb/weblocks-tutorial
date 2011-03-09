@@ -26,7 +26,10 @@
                  (with-html (:p (str (slot-value q 'title)))))))
 
 (defview question-form-view (:type form)
-  (id :hidep t))
+  (id :hidep t)
+  (upvotes :hidep t)
+  (downvotes :hidep t)
+  (title))
   
 (defun make-question-form (qitem)
   (make-instance 'dataform :data qitem :form-view 'question-form-view))
@@ -35,6 +38,6 @@
   (setf (widget-children root)
 	(list
          (make-widget (f_% (render-link (f_% (let ((newq (make-instance 'question)))
-                                               (do-dialog "Add question" (make-instance 'dataform :data newq :on-cancel (f_ (answer _))))))
+                                               (do-dialog "Add question" (make-instance 'dataform :data newq :on-cancel (f_ (answer _)) :form-view 'question-form-view))))
                            "Add new question")))
          (make-instance 'firstpage))))
