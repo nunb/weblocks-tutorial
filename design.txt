@@ -74,3 +74,5 @@ Remember to do (ql:quickload "tut")  followed by (weblocks:reset-sessions) and a
 Okay, now we have a dialog in screen. It isn't ideal. Notice what happens when you add a question and hit refresh.. the background questions list is updated. But we have no way to dismiss the dialog.
 
 Experiment with using do-page instead of do-dialog. (reset-sessions) will come in handy!
+
+Now we add a on-cancel directive. The fn specified by on-cancel is given a widget and calling answer with any widget returns from the continuation started by do-dialog. But the cancel button is inconvenient and only appears in form-view in the pop up dialog...

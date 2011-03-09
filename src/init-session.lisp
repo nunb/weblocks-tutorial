@@ -35,6 +35,6 @@
   (setf (widget-children root)
 	(list
          (make-widget (f_% (render-link (f_% (let ((newq (make-instance 'question)))
-                                               (do-dialog "Add question" (make-instance 'dataform :data newq ))))
+                                               (do-dialog "Add question" (make-instance 'dataform :data newq :on-cancel (f_ (answer _))))))
                            "Add new question")))
          (make-instance 'firstpage))))
