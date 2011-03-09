@@ -34,6 +34,7 @@
 (defun init-user-session (root)
   (setf (widget-children root)
 	(list
-         (make-widget (f_% (render-link (f_% (send-script "alert('me');"))
+         (make-widget (f_% (render-link (f_% (let ((newq (make-instance 'question)))
+                                               (do-dialog "Add question" (make-instance 'dataform :data newq ))))
                            "Add new question")))
          (make-instance 'firstpage))))

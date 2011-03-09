@@ -70,3 +70,7 @@ The earlier demo prints some errors at the repl. In later versions of weblocks, 
 Now we move on to actually displaying a form (next commit).
 
 Remember to do (ql:quickload "tut")  followed by (weblocks:reset-sessions) and a browser refresh to see changes!
+
+Okay, now we have a dialog in screen. It isn't ideal. Notice what happens when you add a question and hit refresh.. the background questions list is updated. But we have no way to dismiss the dialog.
+
+Experiment with using do-page instead of do-dialog. (reset-sessions) will come in handy!
