@@ -20,24 +20,21 @@
     (awhen (object-id object)
       (delete-persistent-object *default-store* object))))
 
-(defun fix-data ()
-  (dolist (q (all-of 'question))
-    (setf (upvotes-of q) 0)
-    (o-save q)))
+(defun render-question (q parent)
+   (with-html (:table
+               (:tr (:td (render-link (f_% (incf (upvotes-of q))
+                                           (o-save q) (mark-dirty parent))
+                                      "like"))
+                    (:td (str (slot-value q 'title)))
+                    (:td (render-link (f_% (decf (upvotes-of q))
+                                           (o-save q) (mark-dirty parent))
+                                      "dislike"))))))
 
 (defmethod render-widget-body ((obj firstpage) &rest args)
     (with-html (:p "List of top-voted questions for Weblocks tutorial")
                (let ((q (all-of 'question)))
                  (dolist (q (stable-sort q #'> :key #'upvotes-of))
-                   (render-link (f_% (mark-dirty obj)) "refresh")
-                   (with-html (:table
-                               (:tr (:td (:p :class "upvote" (render-link (f_% (incf (upvotes-of q))
-                                                                               (o-save q))
-                                                                          "+"))
-                                         (:p :class "downvote" (render-link (f_% (decf (upvotes-of q))
-                                                                                 (o-save q))
-                                                                            "-")))
-                                    (:td (str (slot-value q 'title))))))))))
+                   (render-widget (make-widget (f_% (render-question q obj))))))))
                                          
 
 (defview question-form-view (:type form)
