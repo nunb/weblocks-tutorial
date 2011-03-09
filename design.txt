@@ -80,3 +80,5 @@ Now we add a on-cancel directive. The fn specified by on-cancel is given a widge
 Show only the fields we need to.
 
 Fix the earlier problem: on-cancel works fine, but if we successfully submit the data, we'd like the dialog to disappear. Note that the new data does *not* show up on the page yet, we need a refresh to see it. We will fix this next.
+
+A simple fix to refresh the root-widget. Also: goddamnit, why didn't I separate each clause out into its own line before. duh!
