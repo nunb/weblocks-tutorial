@@ -28,8 +28,17 @@
 (defmethod render-widget-body ((obj firstpage) &rest args)
     (with-html (:p "List of top-voted questions for Weblocks tutorial")
                (let ((q (all-of 'question)))
-                 (dolist (q (stable-sort q #'< :key #'upvotes-of))
-                   (with-html (:p (str (slot-value q 'title))))))))
+                 (dolist (q (stable-sort q #'> :key #'upvotes-of))
+                   (render-link (f_% (mark-dirty obj)) "refresh")
+                   (with-html (:table
+                               (:tr (:td (:p :class "upvote" (render-link (f_% (incf (upvotes-of q))
+                                                                               (o-save q))
+                                                                          "+"))
+                                         (:p :class "downvote" (render-link (f_% (decf (upvotes-of q))
+                                                                                 (o-save q))
+                                                                            "-")))
+                                    (:td (str (slot-value q 'title))))))))))
+                                         
 
 (defview question-form-view (:type form)
   (id :hidep t)

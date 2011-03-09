@@ -92,3 +92,7 @@ Note that sorting can be done at the store level, we're just electing to do it e
 And upvotes-of is a convenience accessor function created for us by defclass* and it is setf-able to boot.
 
 Even though we don't use it, ensure that if a number is entered it'll be parsed and stored as an integer.
+
+Change the layout a bit, add upvotes and downvotes, and add an explicit refresh button. Note that if everything had been a widget we wouldn't have required the explicit refresh. We will see that next.
+
+Tables for layout? Get out of here!
