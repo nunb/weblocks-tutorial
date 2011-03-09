@@ -60,3 +60,8 @@ Now refresh your browser. Voila!
 Add a few more Qs the same way. (Since we're using rlwrap remember to use the up arrow key to save typing!).
 
 Also note that at this point the data/transaction.xml file is created since we've saved data to the default persistence store.
+
+Okay, now we need an interface to actually add questions thru the browser. 
+
+That means forms+views, all that good stuff. We can also do this an alternate way, by hand-coding the forms..
+

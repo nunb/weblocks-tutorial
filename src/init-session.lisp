@@ -21,11 +21,19 @@
       (delete-persistent-object *default-store* object))))
 
 (defmethod render-widget-body ((obj firstpage) &rest args)
-    (with-html (:p "first page")
+    (with-html (:p "List of top-voted questions for Weblocks tutorial")
                (dolist (q (all-of 'question))
                  (with-html (:p (str (slot-value q 'title)))))))
 
-;; Define callback function to initialize new sessions
+(defview question-form-view (:type form)
+  (id :hidep t))
+  
+(defun make-question-form (qitem)
+  (make-instance 'dataform :data qitem :form-view 'question-form-view))
+
 (defun init-user-session (root)
   (setf (widget-children root)
-	(list (make-instance 'firstpage))))
+	(list
+         (f_% (render-link (f_% (send-script "alert('me');"))
+                          "Add new question"))
+         (make-instance 'firstpage))))
