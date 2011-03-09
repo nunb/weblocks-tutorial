@@ -20,10 +20,16 @@
     (awhen (object-id object)
       (delete-persistent-object *default-store* object))))
 
+(defun fix-data ()
+  (dolist (q (all-of 'question))
+    (setf (upvotes-of q) 0)
+    (o-save q)))
+
 (defmethod render-widget-body ((obj firstpage) &rest args)
     (with-html (:p "List of top-voted questions for Weblocks tutorial")
-               (dolist (q (all-of 'question))
-                 (with-html (:p (str (slot-value q 'title)))))))
+               (let ((q (all-of 'question)))
+                 (dolist (q (stable-sort q #'< :key #'upvotes-of))
+                   (with-html (:p (str (slot-value q 'title))))))))
 
 (defview question-form-view (:type form)
   (id :hidep t)
@@ -35,7 +41,7 @@
 (defun init-user-session (root)
   (setf (widget-children root)
 	(list
-         (make-widget (f_% (render-link (f_% (let ((newq (make-instance 'question)))
+         (make-widget (f_% (render-link (f_% (let ((newq (make-instance 'question :title "")))
                                                (do-dialog "Add question" (make-instance 'dataform :data newq
                                                                                         :ui-state :form
                                                                                         :on-success (f_ (mark-dirty (root-composite)) (answer _))

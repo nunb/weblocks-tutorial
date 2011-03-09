@@ -82,3 +82,11 @@ Show only the fields we need to.
 Fix the earlier problem: on-cancel works fine, but if we successfully submit the data, we'd like the dialog to disappear. Note that the new data does *not* show up on the page yet, we need a refresh to see it. We will fix this next.
 
 A simple fix to refresh the root-widget. Also: goddamnit, why didn't I separate each clause out into its own line before. duh!
+
+We want to sort questions in order of upvotes. So first we're going to need to fix the existing data, because the upvotes field contains the string 0 aka "0" and we need a number.
+
+Quit lisp, restart it with something like ccl --load start-tut.lisp and then (tut::start-tut) to start weblocks. Finally do (tut::fix-data) if you have existing data.
+
+Note that sorting can be done at the store level, we're just electing to do it explicitly. Also note that we default the title to an empty string.
+
+And upvotes-of is a convenience accessor function created for us by defclass* and it is setf-able to boot.
