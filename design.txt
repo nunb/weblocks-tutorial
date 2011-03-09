@@ -90,3 +90,5 @@ Quit lisp, restart it with something like ccl --load start-tut.lisp and then (tu
 Note that sorting can be done at the store level, we're just electing to do it explicitly. Also note that we default the title to an empty string.
 
 And upvotes-of is a convenience accessor function created for us by defclass* and it is setf-able to boot.
+
+Even though we don't use it, ensure that if a number is entered it'll be parsed and stored as an integer.

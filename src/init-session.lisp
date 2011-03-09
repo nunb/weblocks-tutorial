@@ -33,8 +33,8 @@
 
 (defview question-form-view (:type form)
   (id :hidep t)
-  (upvotes :hidep t)
-  (downvotes :hidep t)
+  (upvotes :parse-as integer :hidep t)
+  (downvotes :parse-as integer :hidep t)
   (title))
   
 
