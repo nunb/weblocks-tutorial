@@ -31,13 +31,11 @@
   (downvotes :hidep t)
   (title))
   
-(defun make-question-form (qitem)
-  (make-instance 'dataform :data qitem :form-view 'question-form-view))
 
 (defun init-user-session (root)
   (setf (widget-children root)
 	(list
          (make-widget (f_% (render-link (f_% (let ((newq (make-instance 'question)))
-                                               (do-dialog "Add question" (make-instance 'dataform :data newq :on-cancel (f_ (answer _)) :form-view 'question-form-view))))
+                                               (do-dialog "Add question" (make-instance 'dataform :data newq :ui-state :form :on-success (f_ (answer _)) :on-cancel (f_ (answer _)) :form-view 'question-form-view))))
                            "Add new question")))
          (make-instance 'firstpage))))
